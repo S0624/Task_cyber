@@ -11,7 +11,7 @@
 namespace
 {
 	const char* const kTitleText = "リザルト";
-	const char* const kExplanationText = "1ボタンを押してください";
+	const char* const kExplanationText = "ボタンを押してください";
 		
 	SceneAnswer1 scene1;
 	SceneAnswer2 scene2;

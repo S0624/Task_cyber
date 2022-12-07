@@ -45,7 +45,7 @@ void SceneAnswer4::Fead()
 {
 	if (m_checkPush == false)
 	{
-		m_fadeValue = 255 * (m_fadeTimer / fade_interval);
+		m_fadeValue = 255 * m_fadeTimer / fade_interval;
 		if (--m_fadeTimer == 0) {
 		}
 		if (m_fadeValue < 0)
@@ -56,7 +56,7 @@ void SceneAnswer4::Fead()
 	}
 	if (m_checkPush == true)
 	{
-		m_fadeValue = 255 * (m_fadeTimer / fade_interval);
+		m_fadeValue = 255 * m_fadeTimer / fade_interval;
 		if (++m_fadeTimer == fade_interval) {
 
 		}
