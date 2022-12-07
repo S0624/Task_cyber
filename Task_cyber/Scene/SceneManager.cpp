@@ -13,8 +13,8 @@ SceneManager::SceneManager() :
 
 void SceneManager::init()
 {
-	//m_pScene = new SceneTitle;
-	m_pScene = new Scenequestion1;
+	m_pScene = new SceneTitle;
+	//m_pScene = new Scenequestion1;
 	m_pScene->init();
 }
 
