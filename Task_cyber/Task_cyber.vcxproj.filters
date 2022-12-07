@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\Scene">
+      <UniqueIdentifier>{c825b303-09d6-47b3-8c19-bbec7bdd7311}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Question">
+      <UniqueIdentifier>{0c97746a-94ce-4db3-856e-4a2aa6aa64b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Answer">
+      <UniqueIdentifier>{774f0988-9dd7-4efc-8343-38bbd8e64580}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Scene">
+      <UniqueIdentifier>{deb0a1f0-de7e-4875-9d87-c7b24213a053}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Scene\Question">
+      <UniqueIdentifier>{47d2ff35-d6b8-4e32-8ac2-5b36c1a024c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Scene\Answer">
+      <UniqueIdentifier>{dada36d6-030f-4acd-b6fd-1815d703311f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,6 +39,54 @@
     <ClCompile Include="Vec2.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Pad.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneAnswer1.cpp">
+      <Filter>ソース ファイル\Scene\Answer</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneAnswer2.cpp">
+      <Filter>ソース ファイル\Scene\Answer</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneAnswer3.cpp">
+      <Filter>ソース ファイル\Scene\Answer</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneAnswer4.cpp">
+      <Filter>ソース ファイル\Scene\Answer</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneAnswer5.cpp">
+      <Filter>ソース ファイル\Scene\Answer</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scenequestion1.cpp">
+      <Filter>ソース ファイル\Scene\Question</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scenequestion2.cpp">
+      <Filter>ソース ファイル\Scene\Question</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scenequestion3.cpp">
+      <Filter>ソース ファイル\Scene\Question</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scenequestion4.cpp">
+      <Filter>ソース ファイル\Scene\Question</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scenequestion5.cpp">
+      <Filter>ソース ファイル\Scene\Question</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneBase.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneMain.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneResult.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneTitle.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -28,6 +94,54 @@
     </ClInclude>
     <ClInclude Include="Vec2.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Pad.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneAnswer1.h">
+      <Filter>ヘッダー ファイル\Scene\Answer</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneAnswer2.h">
+      <Filter>ヘッダー ファイル\Scene\Answer</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneAnswer3.h">
+      <Filter>ヘッダー ファイル\Scene\Answer</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneAnswer4.h">
+      <Filter>ヘッダー ファイル\Scene\Answer</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneAnswer5.h">
+      <Filter>ヘッダー ファイル\Scene\Answer</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scenequestion1.h">
+      <Filter>ヘッダー ファイル\Scene\Question</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scenequestion2.h">
+      <Filter>ヘッダー ファイル\Scene\Question</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scenequestion3.h">
+      <Filter>ヘッダー ファイル\Scene\Question</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scenequestion4.h">
+      <Filter>ヘッダー ファイル\Scene\Question</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scenequestion5.h">
+      <Filter>ヘッダー ファイル\Scene\Question</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneBase.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneMain.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneResult.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneTitle.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

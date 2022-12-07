@@ -140,10 +140,42 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Pad.cpp" />
+    <ClCompile Include="Scene\SceneAnswer1.cpp" />
+    <ClCompile Include="Scene\SceneAnswer2.cpp" />
+    <ClCompile Include="Scene\SceneAnswer3.cpp" />
+    <ClCompile Include="Scene\SceneAnswer4.cpp" />
+    <ClCompile Include="Scene\SceneAnswer5.cpp" />
+    <ClCompile Include="Scene\SceneBase.cpp" />
+    <ClCompile Include="Scene\SceneMain.cpp" />
+    <ClCompile Include="Scene\SceneManager.cpp" />
+    <ClCompile Include="Scene\Scenequestion1.cpp" />
+    <ClCompile Include="Scene\Scenequestion2.cpp" />
+    <ClCompile Include="Scene\Scenequestion3.cpp" />
+    <ClCompile Include="Scene\Scenequestion4.cpp" />
+    <ClCompile Include="Scene\Scenequestion5.cpp" />
+    <ClCompile Include="Scene\SceneResult.cpp" />
+    <ClCompile Include="Scene\SceneTitle.cpp" />
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
+    <ClInclude Include="Pad.h" />
+    <ClInclude Include="Scene\SceneAnswer1.h" />
+    <ClInclude Include="Scene\SceneAnswer2.h" />
+    <ClInclude Include="Scene\SceneAnswer3.h" />
+    <ClInclude Include="Scene\SceneAnswer4.h" />
+    <ClInclude Include="Scene\SceneAnswer5.h" />
+    <ClInclude Include="Scene\SceneBase.h" />
+    <ClInclude Include="Scene\SceneMain.h" />
+    <ClInclude Include="Scene\SceneManager.h" />
+    <ClInclude Include="Scene\Scenequestion1.h" />
+    <ClInclude Include="Scene\Scenequestion2.h" />
+    <ClInclude Include="Scene\Scenequestion3.h" />
+    <ClInclude Include="Scene\Scenequestion4.h" />
+    <ClInclude Include="Scene\Scenequestion5.h" />
+    <ClInclude Include="Scene\SceneResult.h" />
+    <ClInclude Include="Scene\SceneTitle.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
