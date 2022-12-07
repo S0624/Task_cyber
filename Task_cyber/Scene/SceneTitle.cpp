@@ -27,7 +27,7 @@ void SceneTitle::end()
 
 }
 
-void SceneTitle::Fead()
+void SceneTitle::fead()
 {
 	if (m_checkPush == false)
 	{
@@ -52,7 +52,7 @@ void SceneTitle::Fead()
 
 SceneBase* SceneTitle::update()
 {
-	Fead();
+	fead();
 	if (Pad::isTrigger(PAD_INPUT_1))
 	{
 		m_checkPush = true;

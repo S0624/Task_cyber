@@ -6,17 +6,17 @@
 
 namespace
 {
-	const char* kQuestion = "問題です\n";
-	const char* kQuestionText = "パソコン画面に突然「ウイルスに感染した」などと偽のセキュリティ警告を表示させて不安をあおり、"
+	const char* kQuestion = "問題です\n";		//問題
+	const char* kQuestionText = "パソコン画面に突然「ウイルスに感染した」などと偽のセキュリティ警告を表示させて不安をあおり、"		//問題
 		"\n表示された電話番号に電話をかけさせ、サポート料金等をだまし取る手口のことをサポート詐欺という。\n";
-	const char* kQuestionOptions = "〇 → 1ボタン       　×→ 2ボタン";
+	const char* kQuestionOptions = "〇　　　　　　　　　　×　　　　　";			//ガイド
 	const char* kText = "";
-	constexpr int kFrameCount = 150;
 	int knum = 0;
 	bool kanswer = false;
 }
 Scenequestion1::Scenequestion1() :
 	m_pos(),
+	m_boxPos(),
 	m_vec(),
 	m_hFieldGraphic(-1),
 	m_isEnd(-1),
@@ -28,22 +28,22 @@ Scenequestion1::Scenequestion1() :
 void Scenequestion1::init()
 {
 	m_pos.x = 1000;
+	m_boxPos.x = 450;
+	m_boxPos.y = 395;
 	m_vec.x = 1;
 	m_isEnd = false;
-	m_hFieldGraphic = LoadGraph("data/sky.jpg");
+	m_hFieldGraphic = LoadGraph("data/sky.jpg");			//背景画像の読み込み
 	knum = 0;
-
-	m_frameCount = kFrameCount;
 }
 
 void Scenequestion1::end()
 {
-	DeleteGraph(m_hFieldGraphic);
+	DeleteGraph(m_hFieldGraphic);							//画像データの削除
 }
 
-void Scenequestion1::Fead()
+void Scenequestion1::fead()
 {
-	if (m_checkPush == false)
+	if (m_checkPush == false)								//フェードアウト処理
 	{
 		m_fadeValue = 255 * m_fadeTimer / fade_interval;
 		if (--m_fadeTimer == 0) {
@@ -55,7 +55,7 @@ void Scenequestion1::Fead()
 			m_fadeTimer = 0;
 		}
 	}
-	if (m_checkPush == true)
+	if (m_checkPush == true)							//フェードインの処理
 	{
 		m_fadeValue = 255 * m_fadeTimer / fade_interval;
 		if (++m_fadeTimer == fade_interval) {
@@ -66,29 +66,49 @@ void Scenequestion1::Fead()
 
 SceneBase* Scenequestion1::update()
 {
-	Fead();
-	m_pos.x -= m_vec.x;
+	fead();											//フェード処理の呼び出し
+	m_pos.x -= m_vec.x;								//タイマーのカウント開始
 
-	kText = kQuestionText;
-		
-	if (Pad::isTrigger(PAD_INPUT_1))
+	kText = kQuestionText;							//問題文の代入
+	
+	if (Pad::isTrigger(PAD_INPUT_RIGHT))			//右が押されたら右にずらす
 	{
-		kanswer = false;
-		m_checkPush = true;
+		m_boxPos.x += 200;
+		if (m_boxPos.x > 650)
+		{
+			m_boxPos.x = 650;
+		}
 	}
-	if (Pad::isTrigger(PAD_INPUT_2) || m_pos.x < 300)
+	if (Pad::isTrigger(PAD_INPUT_LEFT))				//左が押されたら左にずらす
 	{
-		kanswer = true;
-		m_checkPush = true;
+		m_boxPos.x -= 200;
+		if (m_boxPos.x < 450)
+		{
+			m_boxPos.x = 450;
+		}
 	}
 
-	if (m_fadeValue > 255)
+	if (Pad::isTrigger(PAD_INPUT_1) || m_pos.x < 300)		//押された位置によって正解を得る
+	{														//またはタイムアップ
+		if (m_boxPos.x == 450)
+		{
+			kanswer = false;
+			m_checkPush = true;
+		}
+		if (m_boxPos.x == 650|| m_pos.x < 300)
+		{
+			kanswer = true;
+			m_checkPush = true;
+		}
+	}
+
+	if (m_fadeValue > 255)					//フェードインしたら処理をする
 	{
-		return(new SceneAnswer1);			//mainに切り替え
+		return(new SceneAnswer1);			//答えに切り替え
 		m_fadeValue = 255;
 		m_checkPush = false;
 	}
-	if (m_pos.x < 300)
+	if (m_pos.x < 300)						//タイマーがゼロになったらタイマーを動かすのをやめる
 	{
 		m_pos.x = 300;
 		m_vec.x = 0;
@@ -96,7 +116,7 @@ SceneBase* Scenequestion1::update()
 	return this;
 }
 
-int Scenequestion1::Num() const
+int Scenequestion1::num() const
 {
 	int num;
 	num = knum;
@@ -104,7 +124,7 @@ int Scenequestion1::Num() const
 	return num;
 }
 
-bool Scenequestion1::AnswerNum() const
+bool Scenequestion1::answerNum() const
 {
 	bool answer;
 	answer = kanswer;
@@ -118,7 +138,11 @@ void Scenequestion1::draw()
 	DrawString((Game::kScreenWindth - GetDrawStringWidth(kText, -1)) / 2, 350, kText, GetColor(255, 255, 255));			//タイトル画面の表示
 	DrawString((Game::kScreenWindth - GetDrawStringWidth(kQuestionOptions, -1)) / 2, 400, kQuestionOptions, GetColor(255, 255, 255));			//タイトル画面の表示
 
-	DrawBox(300, 600, static_cast<int>(m_pos.x), 625, GetColor(100, 255, 100), true);
+	DrawBox(static_cast<int>(m_boxPos.x), static_cast<int>(m_boxPos.y), 
+		static_cast<int>(m_boxPos.x) + 25, static_cast<int>(m_boxPos.y) + 25, GetColor(255, 0, 25), false);					//操作する四角の表示
+
+
+	DrawBox(300, 600, static_cast<int>(m_pos.x), 625, GetColor(100, 255, 100), true);						//残り時間で色を変える
 	if (m_pos.x < 650)
 	{
 		DrawBox(300, 600, static_cast<int>(m_pos.x), 625, GetColor(255, 255, 100), true);

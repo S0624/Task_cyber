@@ -37,7 +37,7 @@ void SceneResult::end()
 
 }
 
-void SceneResult::Fead()
+void SceneResult::fead()
 {
 	if (m_checkPush == false)
 	{
@@ -62,10 +62,10 @@ void SceneResult::Fead()
 SceneBase* SceneResult::update()
 {
 
-	Fead();
+	fead();
 	kAnswercnt = 0;
-	(kAnswercnt = scene1.CheckAnswer() + scene2.CheckAnswer() + scene3.CheckAnswer()
-		+ scene4.CheckAnswer() + scene5.CheckAnswer());
+	(kAnswercnt = scene1.checkAnswer() + scene2.checkAnswer() + scene3.checkAnswer()
+		+ scene4.checkAnswer() + scene5.checkAnswer());
 
 	if (Pad::isTrigger(PAD_INPUT_1))
 	{
@@ -88,7 +88,7 @@ void SceneResult::draw()
 	
 	DrawFormatString(560, 400, GetColor(255, 255, 255), " %dñ‚ê≥âÇµÇ‹ÇµÇΩ", kAnswercnt);
 	{
-		if (scene1.CheckAnswer() == 1)
+		if (scene1.checkAnswer() == 1)
 		{
 			DrawFormatString(300, 175, GetColor(255, 255, 255), " 1ñ‚ñ⁄ :Å@ÅZ");
 		}
@@ -96,7 +96,7 @@ void SceneResult::draw()
 		{
 			DrawFormatString(300, 175, GetColor(255, 255, 255), " 1ñ‚ñ⁄ :Å@Å~");
 		}
-		if (scene2.CheckAnswer() == 1)
+		if (scene2.checkAnswer() == 1)
 		{
 			DrawFormatString(600, 175, GetColor(255, 255, 255), " 2ñ‚ñ⁄ :Å@ÅZ");
 		}
@@ -104,7 +104,7 @@ void SceneResult::draw()
 		{
 			DrawFormatString(600, 175, GetColor(255, 255, 255), " 2ñ‚ñ⁄ :Å@Å~");
 		}
-		if (scene3.CheckAnswer() == 1)
+		if (scene3.checkAnswer() == 1)
 		{
 			DrawFormatString(900, 175, GetColor(255, 255, 255), " 3ñ‚ñ⁄ :Å@ÅZ");
 		}
@@ -112,7 +112,7 @@ void SceneResult::draw()
 		{
 			DrawFormatString(900, 175, GetColor(255, 255, 255), " 3ñ‚ñ⁄ :Å@Å~");
 		}
-		if (scene4.CheckAnswer() == 1)
+		if (scene4.checkAnswer() == 1)
 		{
 			DrawFormatString(450, 225, GetColor(255, 255, 255), " 4ñ‚ñ⁄ :Å@ÅZ");
 		}
@@ -120,7 +120,7 @@ void SceneResult::draw()
 		{
 			DrawFormatString(450, 225, GetColor(255, 255, 255), " 4ñ‚ñ⁄ :Å@Å~");
 		}
-		if (scene5.CheckAnswer() == 1)
+		if (scene5.checkAnswer() == 1)
 		{
 			DrawFormatString(750, 225, GetColor(255, 255, 255), " 5ñ‚ñ⁄ :Å@ÅZ");
 		}

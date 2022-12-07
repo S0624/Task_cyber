@@ -7,12 +7,17 @@ public:
 	SceneResult();
 	virtual ~SceneResult() {}
 
+	//初期化
 	virtual void init()override;
+	//終了処理
 	virtual void end()override;
 
-	void Fead();
+	//フェード処理
+	virtual void fead();
 
+	//更新処理
 	virtual SceneBase* update() override;
+	//描画処理
 	virtual void draw() override;
 
 private:

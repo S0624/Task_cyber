@@ -6,16 +6,21 @@ public:
 	SceneAnswer2();
 	virtual ~SceneAnswer2() {}
 
+	//初期化
 	virtual void init()override;
+	//終了処理
 	virtual void end()override;
 
-	void Fead();
+	//フェード処理
+	virtual void fead();
 
+	//答えがあっていたかを渡す関数
+	virtual int checkAnswer();
 
+	//更新処理
 	virtual SceneBase* update()override;
+	//描画処理
 	virtual void draw() override;
-
-	int CheckAnswer();
 
 private:
 	int m_hFieldGraphic;
@@ -27,5 +32,5 @@ private:
 	bool m_isEnd;
 
 	int m_num;
-	bool m_numAnswer;
+	bool m_numAnswer;;
 };

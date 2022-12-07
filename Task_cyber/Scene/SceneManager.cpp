@@ -1,6 +1,7 @@
 #include <cassert>
 #include"SceneManager.h"
 #include "SceneTitle.h"
+#include "Scenequestion1.h"
 #include "../Pad.h"
 
 SceneManager::SceneManager() :
@@ -12,7 +13,8 @@ SceneManager::SceneManager() :
 
 void SceneManager::init()
 {
-	m_pScene = new SceneTitle;
+	//m_pScene = new SceneTitle;
+	m_pScene = new Scenequestion1;
 	m_pScene->init();
 }
 

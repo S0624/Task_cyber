@@ -86,13 +86,13 @@ SceneBase* SceneMain::update()
 
 	//switch (m_num)
 	
-	switch (m_question.Num())
+	switch (m_question.num())
 	{
 	case 0:
 		kText = kAnswerText1;
 		kAnswerNum[0] = 1;
 
-		if (m_question.AnswerNum() == true)
+		if (m_question.answerNum() == true)
 		{
 			klegitimate = kmistake;
 		}
@@ -109,7 +109,7 @@ SceneBase* SceneMain::update()
 	case 1:
 		kText = kAnswerText2;
 		kAnswerNum[1] = 1;
-		if (m_question.AnswerNum() == false)
+		if (m_question.answerNum() == false)
 		{
 			klegitimate = kmistake;
 		}
@@ -122,7 +122,7 @@ SceneBase* SceneMain::update()
 	default:
 		kText = kAnswerText3;
 		kAnswerNum[2] = 1;
-		if (m_question.AnswerNum() == true)
+		if (m_question.answerNum() == true)
 		{
 			klegitimate = kmistake;
 		}
@@ -159,7 +159,7 @@ void SceneMain::draw()
 	DrawFormatString(0, 0, GetColor(255, 255, 255), ":%d", kAnswerNum[0]);
 	DrawFormatString(0, 20, GetColor(255, 255, 255), ":%d", kAnswerNum[1]);
 	DrawFormatString(0, 40, GetColor(255, 255, 255), ":%d", kAnswerNum[2]);
-	DrawFormatString(0, 100, GetColor(255, 255, 255), ":%d", m_question.Num());
+	DrawFormatString(0, 100, GetColor(255, 255, 255), ":%d", m_question.num());
 	
 	DrawFormatString(0, 200, GetColor(255, 255, 255), ":%d", m_fadeValue);
 
@@ -167,7 +167,7 @@ void SceneMain::draw()
 	DrawBox(0, 0, 1280, 720, GetColor(0, 0, 0), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	
-	if (m_question.AnswerNum() == false)
+	if (m_question.answerNum() == false)
 	{
 		DrawFormatString(0, 80, GetColor(255, 255, 255), "false");
 	}

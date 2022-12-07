@@ -42,7 +42,7 @@ void SceneAnswer2::end()
 	DeleteGraph(m_hFieldGraphic);
 }
 
-void SceneAnswer2::Fead()
+void SceneAnswer2::fead()
 {
 	if (m_checkPush == false)
 	{
@@ -66,10 +66,10 @@ void SceneAnswer2::Fead()
 
 SceneBase* SceneAnswer2::update()
 {
-	Fead();
+	fead();
 
 	kText = kAnswerText;
-	if (m_question.AnswerNum() == true)
+	if (m_question.answerNum() == true)
 	{
 		klegitimate = kmistake;
 		kCheck = 0;
@@ -105,7 +105,7 @@ void SceneAnswer2::draw()
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
-int SceneAnswer2::CheckAnswer()
+int SceneAnswer2::checkAnswer()
 {
 	int check = 0;
 	check = kCheck;

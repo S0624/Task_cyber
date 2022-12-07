@@ -9,14 +9,14 @@ namespace
 	const char* kQuestion = "問題です\n";
 	const char* kQuestionText = "無断で会社の顧客データをUSBメモリなどの記憶媒体へコピーし、\n"
 		"社外へ持ち出し不正利用した場合、窃盗罪が適用される場合がある。";
-	const char* kQuestionOptions = "〇 → 1ボタン       　×→ 2ボタン";
+	const char* kQuestionOptions = "〇　　　　　　　　　　×　　　　　";			//ガイド
 	const char* kText = "";
-	constexpr int kFrameCount = 150;
 	int knum = 0;
 	bool kanswer = false;
 }
 Scenequestion4::Scenequestion4() :
 	m_pos(),
+	m_boxPos(),
 	m_vec(),
 	m_hFieldGraphic(-1),
 	m_isEnd(-1),
@@ -28,22 +28,22 @@ Scenequestion4::Scenequestion4() :
 void Scenequestion4::init()
 {
 	m_pos.x = 1000;
+	m_boxPos.x = 450;
+	m_boxPos.y = 395;
 	m_vec.x = 1;
 	m_isEnd = false;
-	m_hFieldGraphic = LoadGraph("data/sky.jpg");
+	m_hFieldGraphic = LoadGraph("data/sky.jpg");			//背景画像の読み込み
 	knum = 0;
-
-	m_frameCount = kFrameCount;
 }
 
 void Scenequestion4::end()
 {
-	DeleteGraph(m_hFieldGraphic);
+	DeleteGraph(m_hFieldGraphic);							//画像データの削除
 }
 
-void Scenequestion4::Fead()
+void Scenequestion4::fead()
 {
-	if (m_checkPush == false)
+	if (m_checkPush == false)								//フェードアウト処理
 	{
 		m_fadeValue = 255 * m_fadeTimer / fade_interval;
 		if (--m_fadeTimer == 0) {
@@ -55,7 +55,7 @@ void Scenequestion4::Fead()
 			m_fadeTimer = 0;
 		}
 	}
-	if (m_checkPush == true)
+	if (m_checkPush == true)							//フェードインの処理
 	{
 		m_fadeValue = 255 * m_fadeTimer / fade_interval;
 		if (++m_fadeTimer == fade_interval) {
@@ -66,29 +66,49 @@ void Scenequestion4::Fead()
 
 SceneBase* Scenequestion4::update()
 {
-	Fead();
-	m_pos.x -= m_vec.x;
-	m_frameCount--;
-	
-	kText = kQuestionText;
-	
-	if (Pad::isTrigger(PAD_INPUT_1))
+	fead();											//フェード処理の呼び出し
+	m_pos.x -= m_vec.x;								//タイマーのカウント開始
+
+	kText = kQuestionText;							//問題文の代入
+
+	if (Pad::isTrigger(PAD_INPUT_RIGHT))			//右が押されたら右にずらす
 	{
-		kanswer = false;
-		m_checkPush = true;
+		m_boxPos.x += 200;
+		if (m_boxPos.x > 650)
+		{
+			m_boxPos.x = 650;
+		}
 	}
-	if (Pad::isTrigger(PAD_INPUT_2) || m_pos.x < 300)
+	if (Pad::isTrigger(PAD_INPUT_LEFT))				//左が押されたら左にずらす
 	{
-		kanswer = true;
-		m_checkPush = true;
+		m_boxPos.x -= 200;
+		if (m_boxPos.x < 450)
+		{
+			m_boxPos.x = 450;
+		}
 	}
-	if (m_fadeValue > 255)
+
+	if (Pad::isTrigger(PAD_INPUT_1) || m_pos.x < 300)		//押された位置によって正解を得る
+	{														//またはタイムアップ
+		if (m_boxPos.x == 450)
+		{
+			kanswer = false;
+			m_checkPush = true;
+		}
+		if (m_boxPos.x == 650 || m_pos.x < 300)
+		{
+			kanswer = true;
+			m_checkPush = true;
+		}
+	}
+
+	if (m_fadeValue > 255)					//フェードインしたら処理をする
 	{
-		return(new SceneAnswer4);			//mainに切り替え
+		return(new SceneAnswer4);			//答えに切り替え
 		m_fadeValue = 255;
 		m_checkPush = false;
 	}
-	if (m_pos.x < 300)
+	if (m_pos.x < 300)						//タイマーがゼロになったらタイマーを動かすのをやめる
 	{
 		m_pos.x = 300;
 		m_vec.x = 0;
@@ -96,7 +116,7 @@ SceneBase* Scenequestion4::update()
 	return this;
 }
 
-int Scenequestion4::Num() const
+int Scenequestion4::num() const
 {
 	int num;
 	num = knum;
@@ -104,7 +124,7 @@ int Scenequestion4::Num() const
 	return num;
 }
 
-bool Scenequestion4::AnswerNum() const
+bool Scenequestion4::answerNum() const
 {
 	bool answer;
 	answer = kanswer;
@@ -118,7 +138,11 @@ void Scenequestion4::draw()
 	DrawString((Game::kScreenWindth - GetDrawStringWidth(kText, -1)) / 2, 350, kText, GetColor(255, 255, 255));			//タイトル画面の表示
 	DrawString((Game::kScreenWindth - GetDrawStringWidth(kQuestionOptions, -1)) / 2, 400, kQuestionOptions, GetColor(255, 255, 255));			//タイトル画面の表示
 
-	DrawBox(300, 600, static_cast<int>(m_pos.x), 625, GetColor(100, 255, 100), true);
+	DrawBox(static_cast<int>(m_boxPos.x), static_cast<int>(m_boxPos.y),
+		static_cast<int>(m_boxPos.x) + 25, static_cast<int>(m_boxPos.y) + 25, GetColor(255, 0, 25), false);					//操作する四角の表示
+
+
+	DrawBox(300, 600, static_cast<int>(m_pos.x), 625, GetColor(100, 255, 100), true);						//残り時間で色を変える
 	if (m_pos.x < 650)
 	{
 		DrawBox(300, 600, static_cast<int>(m_pos.x), 625, GetColor(255, 255, 100), true);
@@ -128,6 +152,7 @@ void Scenequestion4::draw()
 		DrawBox(300, 600, static_cast<int>(m_pos.x), 625, GetColor(255, 100, 100), true);
 	}
 	DrawBox(300 - 1, 600 - 1, 1000 + 1, 625 + 1, GetColor(0, 255, 255), false);
+
 
 	SetDrawBlendMode(DX_BLENDMODE_MULA, m_fadeValue);
 	DrawBox(0, 0, 1280, 720, GetColor(0, 0, 0), true);

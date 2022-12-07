@@ -7,13 +7,16 @@ public:
 	SceneTitle();
 	virtual ~SceneTitle() {}
 
+	//初期化
 	virtual void init()override;
+	//終了処理
 	virtual void end()override;
+	//フェード処理
+	virtual void fead();
 
-	void Fead();
-
-
+	//更新処理
 	virtual SceneBase* update()override;
+	//描画処理
 	virtual void draw() override;
 
 private:
