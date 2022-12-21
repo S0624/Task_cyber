@@ -2,6 +2,7 @@
 #include"SceneTitle.h"
 #include"Scenequestion1.h"
 #include"SceneMain.h"
+#include"../game.h"
 #include"../Pad.h"
 
 namespace
@@ -70,8 +71,14 @@ SceneBase* SceneTitle::update()
 void SceneTitle::draw()
 {
 	DrawGraph(0, 0, m_hFieldGraph, true);
-	DrawString(570, 480, kTitleText, GetColor(255, 255, 255));			//タイトル画面の表示
-	DrawString(547, 580, kExplanationText, GetColor(255, 255, 255));			//タイトル画面の表示
+	SetFontSize(40);
+	DrawString((Game::kScreenWindth - GetDrawStringWidth(kTitleText, -1)) / 2,
+		380, kTitleText, GetColor(255, 255, 255));			//タイトル画面の表示
+	SetFontSize(25);
+	DrawString((Game::kScreenWindth - GetDrawStringWidth(kExplanationText, -1)) / 2,
+		580, kExplanationText, GetColor(255, 255, 255));			//タイトル画面の表示
+	SetFontSize(20);
+
 
 	SetDrawBlendMode(DX_BLENDMODE_MULA, m_fadeValue);
 	DrawBox(0, 0, 1280, 720, GetColor(0,0,0), true);

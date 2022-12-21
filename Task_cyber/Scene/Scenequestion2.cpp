@@ -9,7 +9,8 @@ namespace
 	const char* kQuestion = "問題です\n";		//問題
 	const char* kQuestionText = "実在する会社等を装ったメールやショートメッセージを送りつけ、メール等に記載されたリンクから本物そっくりの偽サイトへ誘導し、"		//問題
 		"\nID・パスワード等の個人情報を入力させて盗み取る手口のことをワンクリック詐欺という。\n";
-	const char* kQuestionOptions = "〇　　　　　　　　　　×　　　　　";			//ガイド
+	const char* kCircle = "〇";											//ガイド
+	const char* kCross = "×";											//ガイド
 	const char* kText = "";
 	int knum = 0;
 	bool kanswer = false;
@@ -28,8 +29,8 @@ Scenequestion2::Scenequestion2() :
 void Scenequestion2::init()
 {
 	m_pos.x = 1000;
-	m_boxPos.x = 450;
-	m_boxPos.y = 395;
+	m_boxPos.x = 345;
+	m_boxPos.y = 420;
 	m_vec.x = 1;
 	m_isEnd = false;
 	m_hFieldGraphic = LoadGraph("data/sky.jpg");			//背景画像の読み込み
@@ -74,29 +75,29 @@ SceneBase* Scenequestion2::update()
 
 	if (Pad::isTrigger(PAD_INPUT_RIGHT))			//右が押されたら右にずらす
 	{
-		m_boxPos.x += 200;
-		if (m_boxPos.x > 650)
+		m_boxPos.x += 400;
+		if (m_boxPos.x > 745)
 		{
-			m_boxPos.x = 650;
+			m_boxPos.x = 745;
 		}
 	}
 	if (Pad::isTrigger(PAD_INPUT_LEFT))				//左が押されたら左にずらす
 	{
-		m_boxPos.x -= 200;
-		if (m_boxPos.x < 450)
+		m_boxPos.x -= 400;
+		if (m_boxPos.x < 345)
 		{
-			m_boxPos.x = 450;
+			m_boxPos.x = 345;
 		}
 	}
 
 	if (Pad::isTrigger(PAD_INPUT_1) || m_pos.x < 300)		//押された位置によって正解を得る
 	{														//またはタイムアップ
-		if (m_boxPos.x == 450 || m_pos.x < 300)
+		if (m_boxPos.x == 345 || m_pos.x < 300)
 		{
 			kanswer = true;
 			m_checkPush = true;
 		}
-		if (m_boxPos.x == 650)
+		if (m_boxPos.x == 745)
 		{
 			kanswer = false;
 			m_checkPush = true;
@@ -134,12 +135,19 @@ bool Scenequestion2::answerNum() const
 void Scenequestion2::draw()
 {
 	DrawGraph(0, 0, m_hFieldGraphic, false);
-	DrawString(600, 150, kQuestion, GetColor(255, 255, 255));			//タイトル画面の表示
-	DrawString((Game::kScreenWindth - GetDrawStringWidth(kText, -1)) / 2, 350, kText, GetColor(255, 255, 255));			//タイトル画面の表示
-	DrawString((Game::kScreenWindth - GetDrawStringWidth(kQuestionOptions, -1)) / 2, 400, kQuestionOptions, GetColor(255, 255, 255));			//タイトル画面の表示
+	SetFontSize(50);
+	DrawString((Game::kScreenWindth - GetDrawStringWidth(kQuestion, -1)) / 2,
+		150, kQuestion, GetColor(255, 255, 255));			//タイトル画面の表示
+	SetFontSize(19);
+	DrawString((Game::kScreenWindth - GetDrawStringWidth(kText, -1)) / 2,
+		350, kText, GetColor(255, 255, 255));			//タイトル画面の表示
+
+	SetFontSize(45);
+	DrawString(350, 425, kCircle, GetColor(255, 100, 100));			//タイトル画面の表示
+	DrawString(750, 425, kCross, GetColor(0, 170, 170));			//タイトル画面の表示
 
 	DrawBox(static_cast<int>(m_boxPos.x), static_cast<int>(m_boxPos.y),
-		static_cast<int>(m_boxPos.x) + 25, static_cast<int>(m_boxPos.y) + 25, GetColor(255, 0, 25), false);					//操作する四角の表示
+		static_cast<int>(m_boxPos.x) + 60, static_cast<int>(m_boxPos.y) + 60, GetColor(255, 0, 255), false);					//操作する四角の表示
 
 
 	DrawBox(300, 600, static_cast<int>(m_pos.x), 625, GetColor(100, 255, 100), true);						//残り時間で色を変える

@@ -7,6 +7,7 @@
 #include"SceneAnswer5.h"
 #include"SceneTitle.h"
 #include"../Pad.h"
+#include"../game.h"
 
 namespace
 {
@@ -83,10 +84,14 @@ SceneBase* SceneResult::update()
 void SceneResult::draw()
 {
 	DrawGraph(0, 0, m_hFieldHandle, true);
-	//DrawString(600, 480, kTitleText, GetColor(255, 255, 255));			//タイトル画面の表示
-	DrawString(547, 580, kExplanationText, GetColor(255, 255, 255));			//タイトル画面の表示
+	SetFontSize(40);
+	DrawFormatString((Game::kScreenWindth - GetDrawStringWidth(" %d問正解しました", -1)) / 2,
+		400, GetColor(255, 170, 170), " %d問正解しました", kAnswercnt);
+
+	SetFontSize(30);
+	DrawString((Game::kScreenWindth - GetDrawStringWidth(kExplanationText, -1)) / 2,
+		580, kExplanationText, GetColor(255, 255, 255));			//タイトル画面の表示
 	
-	DrawFormatString(560, 400, GetColor(255, 255, 255), " %d問正解しました", kAnswercnt);
 	{
 		if (scene1.checkAnswer() == 1)
 		{
@@ -130,12 +135,7 @@ void SceneResult::draw()
 		}
 
 	}
-	
-	//DrawFormatString(0, 0, GetColor(255, 0, 0), " %d", scene1.CheckAnswer());
-	//DrawFormatString(0, 20, GetColor(255, 0, 0), " %d", scene2.CheckAnswer());
-	//DrawFormatString(0, 40, GetColor(255, 0, 0), " %d", scene3.CheckAnswer());
-	//DrawFormatString(0, 60, GetColor(255, 0, 0), " %d", scene4.CheckAnswer());
-	//DrawFormatString(0, 80, GetColor(255, 0, 0), " %d", scene5.CheckAnswer());
+
 
 
 	SetDrawBlendMode(DX_BLENDMODE_MULA, m_fadeValue);

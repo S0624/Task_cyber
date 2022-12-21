@@ -16,6 +16,9 @@ namespace
 	const char* klegitimate = "";
 	constexpr int kFrameCount = 15;
 
+	int kRed = 255;
+	int kGreen = 10;
+	int kBlue = 10;
 	int kCheck = 0;
 
 	Scenequestion1 m_question;
@@ -71,6 +74,9 @@ SceneBase* SceneAnswer1::update()
 	if (m_question.answerNum() == true)
 	{
 		klegitimate = kmistake;
+		kRed = 0;
+		kGreen = 100;
+		kBlue = 255;
 		kCheck = 0;
 	}
 	else
@@ -96,9 +102,14 @@ SceneBase* SceneAnswer1::update()
 void SceneAnswer1::draw()
 {
 	DrawGraph(0, 0, m_hFieldGraphic, false);
-	DrawString(600, 150, kAnswer, GetColor(255, 255, 255));			//タイトル画面の表示
-	DrawString(600, 250, klegitimate, GetColor(255, 255, 255));			//タイトル画面の表示
-	DrawString((Game::kScreenWindth - GetDrawStringWidth(kText, -1)) / 2, 350, kText, GetColor(255, 255, 255));			//タイトル画面の表示
+	SetFontSize(50);
+	DrawString((Game::kScreenWindth - GetDrawStringWidth(kAnswer, -1)) / 2,
+		200, kAnswer, GetColor(255, 255, 255));			//タイトル画面の表示
+	DrawString((Game::kScreenWindth - GetDrawStringWidth(klegitimate, -1)) / 2,
+		300, klegitimate, GetColor(kRed, kGreen, kBlue));			//タイトル画面の表示
+	SetFontSize(30);
+	DrawString((Game::kScreenWindth - GetDrawStringWidth(kText, -1)) / 2,
+		400, kText, GetColor(255, 255, 255));			//タイトル画面の表示
 
 	SetDrawBlendMode(DX_BLENDMODE_MULA, m_fadeValue);
 	DrawBox(0, 0, 1280, 720, GetColor(0, 0, 0), true);
