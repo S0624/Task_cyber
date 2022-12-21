@@ -23,6 +23,10 @@ namespace
 	int kBlue = 10;
 	int kCheck = 0;
 
+	int kSoundSE1;
+	int kSoundSE2;
+	int kSoundSE3;
+
 	Scenequestion2 m_question;
 }
 
@@ -39,11 +43,26 @@ void SceneAnswer2::init()
 {
 	m_isEnd = false;
 	m_hFieldGraphic = LoadGraph("data/sky.jpg");
+	kSoundSE1 = LoadSoundMem("Sound/SE1.mp3");
+	kSoundSE2 = LoadSoundMem("Sound/SE3.mp3");
+	kSoundSE3 = LoadSoundMem("Sound/SE4.mp3");
+
+	if (m_question.answerNum() == true)
+	{
+		PlaySoundMem(kSoundSE2, DX_PLAYTYPE_BACK);
+	}
+	else
+	{
+		PlaySoundMem(kSoundSE3, DX_PLAYTYPE_BACK);
+	}
 }
 
 void SceneAnswer2::end()
 {
 	DeleteGraph(m_hFieldGraphic);
+	DeleteSoundMem(kSoundSE1);
+	DeleteSoundMem(kSoundSE2);
+	DeleteSoundMem(kSoundSE3);
 }
 
 void SceneAnswer2::fead()
@@ -89,6 +108,7 @@ SceneBase* SceneAnswer2::update()
 	
 	if (Pad::isTrigger(PAD_INPUT_1))
 	{
+		PlaySoundMem(kSoundSE1, DX_PLAYTYPE_BACK);
 		m_checkPush = true;
 	}
 	if (m_fadeValue > 255)

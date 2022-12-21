@@ -20,22 +20,29 @@ namespace
 	SceneAnswer4 scene4;
 	SceneAnswer5 scene5;
 	int kAnswercnt;
+	int kSoundSE1;
+	int kSoundSE2;
 }
 SceneResult::SceneResult() :
 	m_hFieldHandle(-1),
 	m_checkPush(false)
 {
 	m_hFieldHandle = LoadGraph("data/blue.png");
+
 }
 
 void SceneResult::init()
 {
-
+	kSoundSE1 = LoadSoundMem("Sound/SE1.mp3");
+	kSoundSE2 = LoadSoundMem("Sound/SE7.mp3");
+	PlaySoundMem(kSoundSE2, DX_PLAYTYPE_BACK);
 }
 
 void SceneResult::end()
 {
-
+	DeleteGraph(m_hFieldHandle);
+	DeleteSoundMem(kSoundSE1);
+	DeleteSoundMem(kSoundSE2);
 }
 
 void SceneResult::fead()
@@ -70,6 +77,7 @@ SceneBase* SceneResult::update()
 
 	if (Pad::isTrigger(PAD_INPUT_1))
 	{
+		PlaySoundMem(kSoundSE1, DX_PLAYTYPE_BACK);
 		m_checkPush = true;
 	}
 	if (m_fadeValue > 255)

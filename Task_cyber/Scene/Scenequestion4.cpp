@@ -14,6 +14,9 @@ namespace
 	const char* kText = "";
 	int knum = 0;
 	bool kanswer = false;
+	int kSoundSE1;
+	int kSoundSE2;
+	int kSoundSE3;
 }
 Scenequestion4::Scenequestion4() :
 	m_pos(),
@@ -35,11 +38,18 @@ void Scenequestion4::init()
 	m_isEnd = false;
 	m_hFieldGraphic = LoadGraph("data/sky.jpg");			//背景画像の読み込み
 	knum = 0;
+	kSoundSE1 = LoadSoundMem("Sound/SE1.mp3");
+	kSoundSE2 = LoadSoundMem("Sound/SE2.mp3");
+	kSoundSE3 = LoadSoundMem("Sound/SE6.mp3");
+	PlaySoundMem(kSoundSE3, DX_PLAYTYPE_LOOP);
 }
 
 void Scenequestion4::end()
 {
-	DeleteGraph(m_hFieldGraphic);							//画像データの削除
+	DeleteGraph(m_hFieldGraphic);
+	DeleteSoundMem(kSoundSE1);
+	DeleteSoundMem(kSoundSE2);
+	DeleteSoundMem(kSoundSE3);
 }
 
 void Scenequestion4::fead()
@@ -74,6 +84,7 @@ SceneBase* Scenequestion4::update()
 
 	if (Pad::isTrigger(PAD_INPUT_RIGHT))			//右が押されたら右にずらす
 	{
+		PlaySoundMem(kSoundSE2, DX_PLAYTYPE_BACK);
 		m_boxPos.x += 400;
 		if (m_boxPos.x > 745)
 		{
@@ -82,6 +93,7 @@ SceneBase* Scenequestion4::update()
 	}
 	if (Pad::isTrigger(PAD_INPUT_LEFT))				//左が押されたら左にずらす
 	{
+		PlaySoundMem(kSoundSE2, DX_PLAYTYPE_BACK);
 		m_boxPos.x -= 400;
 		if (m_boxPos.x < 345)
 		{
@@ -91,6 +103,7 @@ SceneBase* Scenequestion4::update()
 
 	if (Pad::isTrigger(PAD_INPUT_1) || m_pos.x < 300)		//押された位置によって正解を得る
 	{														//またはタイムアップ
+		PlaySoundMem(kSoundSE1, DX_PLAYTYPE_BACK);
 		if (m_boxPos.x == 345)
 		{
 			kanswer = false;

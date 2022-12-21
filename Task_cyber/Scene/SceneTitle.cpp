@@ -9,6 +9,7 @@ namespace
 {
 	const char* const kTitleText = "サイバークイズ";
 	const char* const kExplanationText = "ボタンを押してください";
+	int kSoundSE1;
 }
 
 SceneTitle::SceneTitle() :
@@ -16,6 +17,7 @@ SceneTitle::SceneTitle() :
 	m_checkPush(false)
 {
 	m_hFieldGraph = LoadGraph("data/blue.png");
+	kSoundSE1 = LoadSoundMem("Sound/SE1.mp3");
 }
 
 void SceneTitle::init()
@@ -25,7 +27,8 @@ void SceneTitle::init()
 
 void SceneTitle::end()
 {
-
+	DeleteGraph(m_hFieldGraph);
+	DeleteSoundMem(kSoundSE1);
 }
 
 void SceneTitle::fead()
@@ -57,6 +60,7 @@ SceneBase* SceneTitle::update()
 	if (Pad::isTrigger(PAD_INPUT_1))
 	{
 		m_checkPush = true;
+		PlaySoundMem(kSoundSE1, DX_PLAYTYPE_BACK);
 		//return(new SceneMain);			//mainに切り替え
 	}
 	if (m_fadeValue > 255)
